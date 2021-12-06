@@ -94,3 +94,35 @@ sent_tokenize(text)
    "If you don't follow preprocessing steps, you can't get the desired result.",
    'Preprocessing steps varies from purpose to purpose.']
 ```
+#### Using spaCy
+spaCy is an open-source library for advance NLP. It supports over 49+ languages and provides high computation speed.
+```
+#Download and Install spacy
+#!pip install -U pip setuptools wheel
+!pip install  spacy
+#python -m spacy download en_core_web_sm    #[didn't work]
+```
+```
+# Import spaCy
+import spacy
+spacy.cli.download("en_core_web_sm")
+```
+```
+# Word Tokenization
+from spacy.lang.en import English
+# Load english tokenizer
+nlp = English()     # nlp is used to craeate documents with linguistic annotations.
+text = """This is text for testing preprocessing steps for nlp. For nlp, preprocessing steps are very much important. Preprocessing steps improve the accuracy in percentage(%). If you don't follow preprocessing steps, you can't get the desired result. Preprocessing steps varies from purpose to purpose."""
+doc = nlp(text)   # Creates the document using nlp
+print(doc)
+
+# tokenizing the document and create a list of tokens
+tokens = []
+for token in doc:
+  tokens.append(token.text)
+print(tokens)
+```
+```
+  This is text for testing preprocessing steps for nlp. For nlp, preprocessing steps are very much important. Preprocessing steps improve the accuracy in percentage(%). If you don't follow preprocessing steps, you can't get the desired result. Preprocessing steps varies from purpose to purpose.
+['This', 'is', 'text', 'for', 'testing', 'preprocessing', 'steps', 'for', 'nlp', '.', 'For', 'nlp', ',', 'preprocessing', 'steps', 'are', 'very', 'much', 'important', '.', 'Preprocessing', 'steps', 'improve', 'the', 'accuracy', 'in', 'percentage(%', ')', '.', 'If', 'you', 'do', "n't", 'follow', 'preprocessing', 'steps', ',', 'you', 'ca', "n't", 'get', 'the', 'desired', 'result', '.', 'Preprocessing', 'steps', 'varies', 'from', 'purpose', 'to', 'purpose', '.']
+```
